@@ -16,12 +16,7 @@ class PhoneModel extends Model
         return $this->findAll();
     }
 
-    public function findPhoneById($id){
+    // public function findPhoneById($id){
 
-        return $this->select('p.*, c.first_name as first_name, c.last_name as last_name')
-                    ->from('phone_numbers p')
-                    ->where(['p.id' => $id])
-                    ->join('clients c', 'c.id = p.client_id', 'left')
-                    ->asArray()->first();
-    }
+    // }
 }

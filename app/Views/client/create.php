@@ -83,15 +83,15 @@
                         </div>
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (phone number)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="phone1">Phone</label>
-                                <input class="form-control" id="phone1" type="number" placeholder="Enter phone number" required/>
+                            <div class="col-md-12">
+                                <label class="small mb-1" for="phone1">Phone (If entering multiple numbers follow the given example)</label>
+                                <input class="form-control" id="phone1" type="tel" placeholder="Enter phone numbers eg(0777123456, 0688656434, 0711556677)" required/>
                             </div>
                             <!-- Form Group (birthday)-->
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <label class="small mb-1" for="phone2">Another Phone Number </label>
                                 <input class="form-control" id="phone2" type="number" name="phone2" placeholder="Enter another phone number"/>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- Form Group (email address)-->
                         <div class="mb-3">
@@ -120,26 +120,28 @@
     $('form').submit(function(e){
       e.preventDefault();
 
-      let fname = $('#first_name').val()
-      let lname = $('#last_name').val()
-      let gender = $('#gender').val()
+      let fname = $('#first_name').val().trim()
+      let lname = $('#last_name').val().trim()
+      let gender = $('#gender').val().trim()
       let dob = $('#birthday').val()
-      let email = $('#email').val()
-      let position = $('#position').val()
+      let email = $('#email').val().trim()
+      let position = $('#position').val().trim()
       let phone1 = $('#phone1').val()
-      let phone2 = $('#phone2').val()
+      //let phone2 = $('#phone2').val()
       let address1 = $('#address1').val()
       let address2 = $('#address2').val()
 
-      let phone
+      //encodeURI()
+
+      let phone = phone1.split(',')
       let address
 
-      if(phone2.length == 0){
-        phone = phone1
-      }
-      else {
-        phone = []; phone[0] = phone1; phone[1] = phone2
-      }
+      // if(phone2.length == 0){
+      //   phone = phone1
+      // }
+      // else {
+      //   phone = []; phone[0] = phone1; phone[1] = phone2
+      // }
 
       if(address2.length == 0){
         address = address1
@@ -166,7 +168,7 @@
         if(success){
 
           $('nav').after(
-            `<div class="row d-flex align-items-center justify-content-center"><p>${data}</p></div>`
+            `<div class="row d-flex align-items-center justify-content-center bg-success"><strong class="text-white">${data}</strong></div>`
           )
 
         }

@@ -54,7 +54,7 @@ class Client extends BaseController
             $arr = array();
             $arr = $this->request->getPost('phone');
 
-            for($i = 0; $i < 2; $i++){
+            for($i = 0; $i < sizeof($arr); $i++){
                 $phoneModel->insert([
                     'phone_number' => $arr[$i],
                     'client_id' => $client_id,
@@ -70,12 +70,12 @@ class Client extends BaseController
 
         $addressModel = new AddressModel();
         if(is_array($this->request->getPost('address'))){
-            $arr = array();
-            $arr = $this->request->getPost('address');
+            $arr2 = array();
+            $arr2 = $this->request->getPost('address');
 
             for($i = 0; $i < 2; $i++){
                 $addressModel->insert([
-                    'address' => $arr[$i],
+                    'address' => $arr2[$i],
                     'client_id' => $client_id,
                 ]);
             }
@@ -88,5 +88,14 @@ class Client extends BaseController
         }
 
         return "Client succesfully created.";
+    }
+
+    public function get_phone_address($id){
+
+        $model = new ClientModel();
+
+        return $this->getResponse([
+            'data' => $model->getPhoneAddress($id)
+        ]);
     }
 }

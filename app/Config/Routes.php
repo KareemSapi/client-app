@@ -38,7 +38,7 @@ $routes->set404Override();
 $routes->get('/', 'Client::index');
 $routes->get('clients/create', 'Client::create');
 $routes->post('clients/create', 'Client::addClient');
-$routes->get('clients/(:segment)', 'Clients::view/$1');
+$routes->get('clients/(:segment)', 'Client::get_phone_address/$1');
 $routes->get('clients', 'Client::index');
 $routes->get('data', 'Client::getData');
 
