@@ -63,6 +63,8 @@ $(document).ready(function(){
 	$(document).on('click', '#contacts', function(){
 		let id = $(this).siblings('#id').text()
 		let url2 = `http://localhost:8080/clients/${id}`
+
+		let element = this
 		
 		$.get(url2, function(data, success){
 			let arr = []
@@ -70,7 +72,7 @@ $(document).ready(function(){
 			let phone = [...new Set(JSON.parse(arr[0].phone))]
 			let address = [...new Set(JSON.parse(arr[0].address))]
 
-			$(`<p>Phone: ${phone}<br>Address: ${address}</p>`).appendTo('#contacts')
+			$(`<p>Phone: ${phone}<br>Address: ${address}</p>`).appendTo(element)
 
 		})
 	})
