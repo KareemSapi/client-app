@@ -116,6 +116,10 @@
   $(document).ready(function(){
 
     let url = 'http://localhost:8080/clients/create'
+
+    function redirect(){
+        window.location.replace('http://localhost:8080/')
+    }
     
     $('form').submit(function(e){
       e.preventDefault();
@@ -125,7 +129,7 @@
       let gender = $('#gender').val().trim()
       let dob = $('#birthday').val()
       let email = $('#email').val().trim()
-      let position = $('#position').val().trim()
+      let position = $('#position').val().trim().toLowerCase()
       let phone1 = $('#phone1').val()
       //let phone2 = $('#phone2').val()
       let address1 = $('#address1').val()
@@ -136,21 +140,12 @@
       let phone = phone1.split(',')
       let address
 
-      // if(phone2.length == 0){
-      //   phone = phone1
-      // }
-      // else {
-      //   phone = []; phone[0] = phone1; phone[1] = phone2
-      // }
-
       if(address2.length == 0){
         address = address1
       }
       else {
         address = []; address[0] = address1; address[1] = address2
       }
-
-      console.log(phone, address)
 
       let data = {
         fname,
@@ -164,12 +159,15 @@
       }
 
       $.post(url, data, function(data, success){
+        console.log(success)
 
         if(success){
 
           $('nav').after(
             `<div class="row d-flex align-items-center justify-content-center bg-success"><strong class="text-white">${data}</strong></div>`
           )
+
+          setTimeout(redirect(), 5000);
 
         }
       })
